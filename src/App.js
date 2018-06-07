@@ -22,13 +22,13 @@ class App extends Component {
         this.userHasAuthenticated(true);
       }
     }
-    catch(e) {
+    catch (e) {
       if (e !== 'No current user') {
         alert(e);
       }
     }
-
-    this.setState({ isAuthenticating: false });
+    console.log("eeeeee"+{ isAuthenticating:false })
+    this.setState({ isAuthenticating:false });
   }
 
   userHasAuthenticated = authenticated => {
@@ -45,7 +45,8 @@ class App extends Component {
 
   render() {
     const childProps = {
-    isAuthenticated: this.state.isAuthenticated, userHasAuthenticated: this.userHasAuthenticated
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated
     };
 
     return (
@@ -62,19 +63,19 @@ class App extends Component {
             <Nav pullRight>
               {this.state.isAuthenticated
                 ? <Fragment>
-                    <LinkContainer to="/settings">
-                      <NavItem>Settings</NavItem>
-                    </LinkContainer>
-                    <NavItem onClick={this.handleLogout}>Logout</NavItem>
-                  </Fragment>
+                  <LinkContainer to="/settings">
+                    <NavItem>Settings</NavItem>
+                  </LinkContainer>
+                  <NavItem onClick={this.handleLogout}>Logout</NavItem>
+                </Fragment>
                 : <Fragment>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <NavItem>Login</NavItem>
-                    </LinkContainer>
-                  </Fragment>
+                  <LinkContainer to="/signup">
+                    <NavItem>Signup</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <NavItem>Login</NavItem>
+                  </LinkContainer>
+                </Fragment>
               }
             </Nav>
           </Navbar.Collapse>
