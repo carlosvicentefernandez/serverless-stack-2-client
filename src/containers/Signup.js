@@ -8,6 +8,7 @@ import {
 import { Auth } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import "./Signup.css";
+import uuidv4 from "uuid/v4";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -48,9 +49,13 @@ export default class Signup extends Component {
 
     try {
       const newUser = await Auth.signUp({
-        username: this.state.email,
-        password: this.state.password
+        username: uuidv4(),
+        password: this.state.password,
+        attributes: {
+          email: this.state.email
+        }
       });
+
       this.setState({
         newUser
       });
@@ -67,7 +72,7 @@ export default class Signup extends Component {
     this.setState({ isLoading: true });
 
     try {
-      await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+      await Auth.confirmSignUp(this.state.newUser.user.username, this.state.confirmationCode);
       await Auth.signIn(this.state.email, this.state.password);
 
       this.props.userHasAuthenticated(true);
