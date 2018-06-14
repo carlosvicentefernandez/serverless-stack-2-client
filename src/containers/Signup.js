@@ -49,11 +49,11 @@ export default class Signup extends Component {
 
     try {
       const newUser = await Auth.signUp({
-        username: uuidv4(),
+        username: this.state.email,
         password: this.state.password,
-        attributes: {
+/*        attributes: {
           email: this.state.email
-        }
+        }*/
       });
 
       this.setState({
