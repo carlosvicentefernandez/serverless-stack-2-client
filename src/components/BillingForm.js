@@ -17,6 +17,7 @@ class BillingForm extends Component {
     return (
       this.state.name !== "" && this.state.storage !== "" && this.state.isCardComplete
     );
+    
   }
   handleFieldChange = event => {
     this.setState({
